@@ -1,0 +1,1 @@
+site	Distance	eQTL	[Gene:P-val:Population]

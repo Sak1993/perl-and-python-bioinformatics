@@ -1,0 +1,321 @@
+LOCUS       NP_571131                108 aa            linear   VRT 15-FEB-2009
+DEFINITION  preproinsulin [Danio rerio].
+ACCESSION   NP_571131
+VERSION     NP_571131.1  GI:18858895
+DBSOURCE    REFSEQ: accession NM_131056.1
+KEYWORDS    .
+SOURCE      Danio rerio (zebrafish)
+  ORGANISM  Danio rerio
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Actinopterygii; Neopterygii; Teleostei; Ostariophysi;
+            Cypriniformes; Cyprinidae; Danio.
+REFERENCE   1  (residues 1 to 108)
+  AUTHORS   Huang,H., Ruan,H., Aw,M.Y., Hussain,A., Guo,L., Gao,C., Qian,F.,
+            Leung,T., Song,H., Kimelman,D., Wen,Z. and Peng,J.
+  TITLE     Mypt1-mediated spatial positioning of Bmp2-producing cells is
+            essential for liver organogenesis
+  JOURNAL   Development 135 (19), 3209-3218 (2008)
+   PUBMED   18776143
+REFERENCE   2  (residues 1 to 108)
+  AUTHORS   Brown,J.L., Snir,M., Noushmehr,H., Kirby,M., Hong,S.K.,
+            Elkahloun,A.G. and Feldman,B.
+  TITLE     Transcriptional profiling of endogenous germ layer precursor cells
+            identifies dusp4 as an essential gene in zebrafish endoderm
+            specification
+  JOURNAL   Proc. Natl. Acad. Sci. U.S.A. 105 (34), 12337-12342 (2008)
+   PUBMED   18719100
+REFERENCE   3  (residues 1 to 108)
+  AUTHORS   Goessling,W., North,T.E., Lord,A.M., Ceol,C., Lee,S., Weidinger,G.,
+            Bourque,C., Strijbosch,R., Haramis,A.P., Puder,M., Clevers,H.,
+            Moon,R.T. and Zon,L.I.
+  TITLE     APC mutant zebrafish uncover a changing temporal requirement for
+            wnt signaling in liver development
+  JOURNAL   Dev. Biol. 320 (1), 161-174 (2008)
+   PUBMED   18585699
+REFERENCE   4  (residues 1 to 108)
+  AUTHORS   Hong,S.K. and Dawid,I.B.
+  TITLE     Alpha2 macroglobulin-like is essential for liver development in
+            zebrafish
+  JOURNAL   PLoS ONE 3 (11), E3736 (2008)
+   PUBMED   19011686
+REFERENCE   5  (residues 1 to 108)
+  AUTHORS   Dokmanovic-Chouinard,M., Chung,W.K., Chevre,J.C., Watson,E.,
+            Yonan,J., Wiegand,B., Bromberg,Y., Wakae,N., Wright,C.V.,
+            Overton,J., Ghosh,S., Sathe,G.M., Ammala,C.E., Brown,K.K., Ito,R.,
+            LeDuc,C., Solomon,K., Fischer,S.G. and Leibel,R.L.
+  TITLE     Positional cloning of 'Lisch-Like', a candidate modifier of
+            susceptibility to type 2 diabetes in mice
+  JOURNAL   PLoS Genet. 4 (7), E1000137 (2008)
+   PUBMED   18654634
+  REMARK    Publication Status: Online-Only
+REFERENCE   6  (residues 1 to 108)
+  AUTHORS   Liu,Y.W., Gao,W., Teh,H.L., Tan,J.H. and Chan,W.K.
+  TITLE     Prox1 is a novel coregulator of Ff1b and is involved in the
+            embryonic development of the zebra fish interrenal primordium
+  JOURNAL   Mol. Cell. Biol. 23 (20), 7243-7255 (2003)
+   PUBMED   14517294
+REFERENCE   7  (residues 1 to 108)
+  AUTHORS   Field,H.A., Dong,P.D., Beis,D. and Stainier,D.Y.
+  TITLE     Formation of the digestive system in zebrafish. II. Pancreas
+            morphogenesis
+  JOURNAL   Dev. Biol. 261 (1), 197-208 (2003)
+   PUBMED   12941629
+REFERENCE   8  (residues 1 to 108)
+  AUTHORS   Mayer,A.N. and Fishman,M.C.
+  TITLE     Nil per os encodes a conserved RNA recognition motif protein
+            required for morphogenesis and cytodifferentiation of digestive
+            organs in zebrafish
+  JOURNAL   Development 130 (17), 3917-3928 (2003)
+   PUBMED   12874115
+REFERENCE   9  (residues 1 to 108)
+  AUTHORS   Hoshijima,K., Metherall,J.E. and Grunwald,D.J.
+  TITLE     A protein disulfide isomerase expressed in the embryonic midline is
+            required for left/right asymmetries
+  JOURNAL   Genes Dev. 16 (19), 2518-2529 (2002)
+   PUBMED   12368263
+REFERENCE   10 (residues 1 to 108)
+  AUTHORS   Huang,H., Vogel,S.S., Liu,N., Melton,D.A. and Lin,S.
+  TITLE     Analysis of pancreatic development in living transgenic zebrafish
+            embryos
+  JOURNAL   Mol. Cell. Endocrinol. 177 (1-2), 117-124 (2001)
+   PUBMED   11377827
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence was derived from AF036326.1.
+            
+            Publication Note:  This RefSeq record includes a subset of the
+            publications that are available for this gene. Please see the
+            Entrez Gene record to access additional publications.
+FEATURES             Location/Qualifiers
+     source          1..108
+                     /organism="Danio rerio"
+                     /db_xref="taxon:7955"
+                     /chromosome="5"
+                     /map="5"
+     Protein         1..108
+                     /product="preproinsulin"
+                     /note="insa"
+     sig_peptide     1..21
+                     /calculated_mol_wt=2158
+     mat_peptide     22..108
+                     /product="proinsulin"
+                     /calculated_mol_wt=9764
+     Region          25..108
+                     /region_name="IlGF_insulin_like"
+                     /note="IlGF_like family, insulin_like subgroup, specific
+                     to vertebrates. Members include a number of peptides
+                     including insulin and insulin-like growth factors I and
+                     II, which play a variety of roles in controlling processes
+                     such as metabolism, growth and...; cd04367"
+                     /db_xref="CDD:58536"
+     Site            order(31,34,36,106)
+                     /site_type="other"
+                     /note="putative receptor binding surface"
+                     /db_xref="CDD:58536"
+     CDS             1..108
+                     /gene="ins"
+                     /gene_synonym="zgc:109842"
+                     /coded_by="NM_131056.1:45..371"
+                     /db_xref="GeneID:30262"
+                     /db_xref="ZFIN:ZDB-GENE-980526-110"
+ORIGIN      
+        1 mavwlqagal lvllvvssvs tnpgtpqhlc gshlvdalyl vcgptgffyn pkrdvepllg
+       61 flppksaqet evadfafkdh aelirkrgiv eqcchkpcsi felqnycn
+//
+
+LOCUS       NP_990553                107 aa            linear   VRT 29-APR-2008
+DEFINITION  insulin precursor [Gallus gallus].
+ACCESSION   NP_990553
+VERSION     NP_990553.1  GI:45382573
+DBSOURCE    REFSEQ: accession NM_205222.1
+KEYWORDS    .
+SOURCE      Gallus gallus (chicken)
+  ORGANISM  Gallus gallus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Archosauria; Dinosauria; Saurischia; Theropoda; Coelurosauria;
+            Aves; Neognathae; Galliformes; Phasianidae; Phasianinae; Gallus.
+REFERENCE   1  (residues 1 to 107)
+  AUTHORS   Bennett,A.K., Hester,P.Y. and Spurlock,D.E.
+  TITLE     Polymorphisms in vitamin D receptor, osteopontin, insulin-like
+            growth factor 1 and insulin, and their associations with bone, egg
+            and growth traits in a layer--broiler cross in chickens
+  JOURNAL   Anim. Genet. 37 (3), 283-286 (2006)
+   PUBMED   16734694
+  REMARK    GeneRIF: Polymorphisms within the INS gene are associated with
+            55-week body weight.
+REFERENCE   2  (residues 1 to 107)
+  AUTHORS   de la Rosa,E.J., Vega-Nunez,E., Morales,A.V., Serna,J., Rubio,E.
+            and de Pablo,F.
+  TITLE     Modulation of the chaperone heat shock cognate 70 by embryonic
+            (pro)insulin correlates with prevention of apoptosis
+  JOURNAL   Proc. Natl. Acad. Sci. U.S.A. 95 (17), 9950-9955 (1998)
+   PUBMED   9707581
+REFERENCE   3  (residues 1 to 107)
+  AUTHORS   Perler,F., Efstratiadis,A., Lomedico,P., Gilbert,W., Kolodner,R.
+            and Dodgson,J.
+  TITLE     The evolution of genes: the chicken preproinsulin gene
+  JOURNAL   Cell 20 (2), 555-566 (1980)
+   PUBMED   7388949
+REFERENCE   4  (residues 1 to 107)
+  AUTHORS   Smith,L.F.
+  TITLE     Species variation in the amino acid sequence of insulin
+  JOURNAL   Am. J. Med. 40 (5), 662-666 (1966)
+   PUBMED   5949593
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence was derived from X58993.1.
+FEATURES             Location/Qualifiers
+     source          1..107
+                     /organism="Gallus gallus"
+                     /db_xref="taxon:9031"
+                     /chromosome="5"
+                     /map="5"
+     Protein         1..107
+                     /product="insulin precursor"
+                     /note="proinsulin; preproinsulin"
+     sig_peptide     1..24
+                     /calculated_mol_wt=2577
+     mat_peptide     25..107
+                     /product="proinsulin"
+                     /calculated_mol_wt=9422
+     Region          26..107
+                     /region_name="IlGF_insulin_like"
+                     /note="IlGF_like family, insulin_like subgroup, specific
+                     to vertebrates. Members include a number of peptides
+                     including insulin and insulin-like growth factors I and
+                     II, which play a variety of roles in controlling processes
+                     such as metabolism, growth and...; cd04367"
+                     /db_xref="CDD:58536"
+     Site            order(32,35,37,105)
+                     /site_type="other"
+                     /note="putative receptor binding surface"
+                     /db_xref="CDD:58536"
+     CDS             1..107
+                     /gene="INS"
+                     /coded_by="NM_205222.1:19..342"
+                     /db_xref="CGNC:4941"
+                     /db_xref="GeneID:396145"
+ORIGIN      
+        1 malwirslpl lallvfsgpg tsyaaanqhl cgshlvealy lvcgergffy spkarrdveq
+       61 plvssplrge agvlpfqqee yekvkrgive qcchntcsly qlenycn
+//
+
+LOCUS       NP_001103242             108 aa            linear   MAM 21-SEP-2008
+DEFINITION  insulin [Sus scrofa].
+ACCESSION   NP_001103242
+VERSION     NP_001103242.1  GI:172073148
+DBSOURCE    REFSEQ: accession NM_001109772.1
+KEYWORDS    .
+SOURCE      Sus scrofa (pig)
+  ORGANISM  Sus scrofa
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Laurasiatheria; Cetartiodactyla; Suina; Suidae;
+            Sus.
+REFERENCE   1  (residues 1 to 108)
+  AUTHORS   Zhang,Z.J., Wu,L., Qiao,Z.S., Qiao,M.Q., Feng,Y.M. and Guo,Z.Y.
+  TITLE     Contribution of the conserved A16Leu to insulin foldability
+  JOURNAL   Protein J. 27 (3), 192-196 (2008)
+   PUBMED   18071885
+  REMARK    GeneRIF: A16Leu had much more significant effects on the
+            foldability of insulin than B17Leu.
+REFERENCE   2  (residues 1 to 108)
+  AUTHORS   Tang,Y., Wang,S., Chen,Y., Xu,G. and Feng,Y.
+  TITLE     In vitro insulin refolding: characterization of the intermediates
+            and the putative folding pathway
+  JOURNAL   Sci. China, C, Life Sci. 50 (6), 717-725 (2007)
+   PUBMED   17914645
+  REMARK    GeneRIF: A two-stage in vitro folding pathway of insulin is
+            proposed, with six major folding intermediates captured during the
+            folding process.
+REFERENCE   3  (residues 1 to 108)
+  AUTHORS   Harb,G., Toreson,J., Dufour,J. and Korbutt,G.
+  TITLE     Acute exposure to streptozotocin but not human proinflammatory
+            cytokines impairs neonatal porcine islet insulin secretion in vitro
+            but not in vivo
+  JOURNAL   Xenotransplantation 14 (6), 580-590 (2007)
+   PUBMED   17991146
+  REMARK    GeneRIF: Streptozotocin is able to impair in vitro neonatal
+            pancreatic beta cell insulin release whereas human cytokines is
+            not.
+REFERENCE   4  (residues 1 to 108)
+  AUTHORS   Qiao,Z.S., Guo,Z.Y. and Feng,Y.M.
+  TITLE     In vitro folding/unfolding of insulin/single-chain insulin
+  JOURNAL   Protein Pept. Lett. 13 (5), 423-429 (2006)
+   PUBMED   16800793
+  REMARK    GeneRIF: Results describe the in vitro folding/unfolding of
+            insulin/single-chain insulin.
+REFERENCE   5  (residues 1 to 108)
+  AUTHORS   Greaves,R.B., Dodson,G.G. and Verma,C.S.
+  TITLE     Altered ionization of the B13 Glu in insulin B9 and B10 mutants: a
+            computational analysis
+  JOURNAL   Protein Eng. Des. Sel. 17 (7), 557-563 (2004)
+   PUBMED   15326283
+  REMARK    GeneRIF: computational analysis of the altered ionization of the
+            B13 Glu in insulin B9 and B10 mutants of 4INS
+REFERENCE   6  (residues 1 to 108)
+  AUTHORS   Amarger,V., Nguyen,M., Van Laere,A.S., Braunschweig,M., Nezer,C.,
+            Georges,M. and Andersson,L.
+  TITLE     Comparative sequence analysis of the INS-IGF2-H19 gene cluster in
+            pigs
+  JOURNAL   Mamm. Genome 13 (7), 388-398 (2002)
+   PUBMED   12140686
+REFERENCE   7  (residues 1 to 108)
+  AUTHORS   Balschmidt,P., Hansen,F.B., Dodson,E.J., Dodson,G.G. and Korber,F.
+  TITLE     Structure of porcine insulin cocrystallized with clupeine Z
+  JOURNAL   Acta Crystallogr., B 47 (PT 6), 975-986 (1991)
+   PUBMED   1772633
+REFERENCE   8  (residues 1 to 108)
+  AUTHORS   Badger,J., Harris,M.R., Reynolds,C.D., Evans,A.C., Dodson,E.J.,
+            Dodson,G.G. and North,A.C.
+  TITLE     Structure of the pig insulin dimer in the cubic crystal
+  JOURNAL   Acta Crystallogr., B 47 (PT 1), 127-136 (1991)
+   PUBMED   2025410
+REFERENCE   9  (residues 1 to 108)
+  AUTHORS   Baker,E.N., Blundell,T.L., Cutfield,J.F., Cutfield,S.M.,
+            Dodson,E.J., Dodson,G.G., Hodgkin,D.M., Hubbard,R.E., Isaacs,N.W.,
+            Reynolds,C.D. et al.
+  TITLE     The structure of 2Zn pig insulin crystals at 1.5 A resolution
+  JOURNAL   Philos. Trans. R. Soc. Lond., B, Biol. Sci. 319 (1195), 369-456
+            (1988)
+   PUBMED   2905485
+REFERENCE   10 (residues 1 to 108)
+  AUTHORS   Chance,R.E., Ellis,R.M. and Bromer,W.W.
+  TITLE     Porcine proinsulin: characterization and amino acid sequence
+  JOURNAL   Science 161 (837), 165-167 (1968)
+   PUBMED   5657063
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence was derived from AY044828.1.
+            
+            Publication Note:  This RefSeq record includes a subset of the
+            publications that are available for this gene. Please see the
+            Entrez Gene record to access additional publications.
+FEATURES             Location/Qualifiers
+     source          1..108
+                     /organism="Sus scrofa"
+                     /db_xref="taxon:9823"
+                     /chromosome="2"
+                     /map="2p1.7"
+                     /breed="Large White"
+     Protein         1..108
+                     /product="insulin"
+                     /note="proinsulin; preproinsulin"
+                     /calculated_mol_wt=11540
+     Region          26..108
+                     /region_name="IlGF_insulin_like"
+                     /note="IlGF_like family, insulin_like subgroup, specific
+                     to vertebrates. Members include a number of peptides
+                     including insulin and insulin-like growth factors I and
+                     II, which play a variety of roles in controlling processes
+                     such as metabolism, growth and...; cd04367"
+                     /db_xref="CDD:58536"
+     Site            order(32,35,37,106)
+                     /site_type="other"
+                     /note="putative receptor binding surface"
+                     /db_xref="CDD:58536"
+     CDS             1..108
+                     /gene="INS"
+                     /coded_by="NM_001109772.1:60..386"
+                     /db_xref="GeneID:397415"
+ORIGIN      
+        1 malwtrllpl lallalwapa paqafvnqhl cgshlvealy lvcgergffy tpkarreaen
+       61 pqagavelgg glgglqalal egppqkrgiv eqcctsicsl yqlenycn
+//
+

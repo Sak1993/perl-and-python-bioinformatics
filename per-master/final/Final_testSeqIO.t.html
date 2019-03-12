@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0096)http://155.33.203.128/teaching/BIOL6200-Spring2017/local/assignments/data_final/testSeqIO.t.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>~/Documents/teachingCode/BIOL6200/Final/testSeqIO.t.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v6">
+<meta name="syntax" content="perl">
+<meta name="settings" content="use_css">
+<style type="text/css">
+<!--
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+.Special { color: #c000c0; }
+.Identifier { color: #008080; }
+.Comment { color: #0000c0; }
+.Constant { color: #c00000; }
+.Statement { color: #af5f00; }
+.PreProc { color: #c000c0; }
+-->
+</style>
+</head>
+<body>
+<pre><span class="PreProc">#!/usr/bin/perl</span>
+<span class="Statement">use strict</span>;
+<span class="Statement">use warnings</span>;
+<span class="Statement">use feature</span> <span class="Constant">qw(</span><span class="Constant">say</span><span class="Constant">)</span>;
+<span class="Statement">use </span>Test::More <span class="Constant">tests</span> =&gt; <span class="Constant">70</span>; <span class="Comment">#change to the number of test you are going to do</span>
+<span class="Statement">use </span>BioIO::SeqIO;<span class="Comment"># ':ALL'; #bring in subs if this was a module, here its Moose, no need</span>
+<span class="Statement">use </span>BioIO::Seq;<span class="Comment"># ':ALL'; #bring in subs if this was a module, here its Moose, no need</span>
+<span class="Statement">use </span>Test::Exception::LessClever; <span class="Comment"># need this to get dies_ok to work with croak &amp; confess inside and object</span>
+
+
+<span class="Statement">my</span> <span class="Identifier">$fileNameIn</span> = <span class="Constant">'</span><span class="Constant">INPUT/test.gb</span><span class="Constant">'</span>;
+<span class="Statement">my</span> <span class="Identifier">$class</span> = <span class="Constant">'</span><span class="Constant">BioIO::SeqIO</span><span class="Constant">'</span>;
+
+<span class="Statement">my</span> <span class="Identifier">$seqIoObj</span> = BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>, <span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">genbank</span><span class="Constant">'</span>); <span class="Comment"># object creation</span>
+
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>, <span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">junk</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... dies when bad fileType sent to the BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>)} <span class="Constant">'</span><span class="Constant">... dies when no fileType sent to the BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">fasta</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... dies when no filename sent to the BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>, <span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">fasta</span><span class="Constant">'</span>, =&gt; <span class="Constant">_gi</span> =&gt; [])} <span class="Constant">'</span><span class="Constant">... dies when _gi sent to BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>, <span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">fasta</span><span class="Constant">'</span>, =&gt; <span class="Constant">_seq</span> =&gt; {})} <span class="Constant">'</span><span class="Constant">... dies when _seq sent to BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>, <span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">fasta</span><span class="Constant">'</span>, =&gt; <span class="Constant">_def</span> =&gt; {})} <span class="Constant">'</span><span class="Constant">... dies when _def sent to BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>, <span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">fasta</span><span class="Constant">'</span>, =&gt; <span class="Constant">_acc</span> =&gt; {})} <span class="Constant">'</span><span class="Constant">... dies when _acc sent to BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::SeqIO-&gt;new(<span class="Constant">filename</span> =&gt; <span class="Identifier">$fileNameIn</span>, <span class="Constant">fileType</span> =&gt; <span class="Constant">'</span><span class="Constant">fasta</span><span class="Constant">'</span>, =&gt; <span class="Constant">_current</span> =&gt; <span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... dies when _current sent to BioIO::SeqIO constructor</span><span class="Constant">'</span>;
+<br><a name="UPDATE"></a>
+<span class="Comment"># Added new dies_ok</span>
+<span class="Statement">foreach</span> <span class="Statement">my</span> <span class="Identifier">$method</span> (<span class="Constant">qw/</span><span class="Constant">_gi _current _acc _def _seq filename fileType</span><span class="Constant">/</span> ){
+    dies_ok { <span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;$method</span>(<span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>) } <span class="Constant">"</span><span class="Constant">... dies ok when trying to change ro attributre '</span><span class="Identifier">$method</span><span class="Constant">' constructor</span><span class="Constant">"</span>;
+}
+
+isa_ok (<span class="Identifier">$seqIoObj</span>, <span class="Identifier">$class</span>);
+
+<span class="Comment">#method returns an array ref</span>
+is <span class="Constant">3</span>, <span class="Statement">scalar</span> <span class="Identifier">@{</span> <span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;_gi</span>() <span class="Identifier">}</span>, <span class="Constant">"</span><span class="Constant">The number of gi's is correct</span><span class="Constant">"</span>;
+<span class="Comment">#method returns a hash ref</span>
+is <span class="Constant">3</span>, <span class="Statement">scalar</span> <span class="Statement">keys</span> <span class="Identifier">%{</span> <span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;_accn</span>() <span class="Identifier">}</span>, <span class="Constant">"</span><span class="Constant">The number of accn's is correct</span><span class="Constant">"</span>;
+<span class="Comment">#method returns a hash ref</span>
+is <span class="Constant">3</span>, <span class="Statement">scalar</span> <span class="Statement">keys</span> <span class="Identifier">%{</span> <span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;_seq</span>() <span class="Identifier">}</span>, <span class="Constant">"</span><span class="Constant">The number of seq's is correct</span><span class="Constant">"</span>;
+<span class="Comment">#method returns a hash ref</span>
+is <span class="Constant">3</span>, <span class="Statement">scalar</span> <span class="Statement">keys</span> <span class="Identifier">%{</span> <span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;_def</span>() <span class="Identifier">}</span>, <span class="Constant">"</span><span class="Constant">The number of def's is correct</span><span class="Constant">"</span>;
+
+dies_ok{<span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;nextSeq</span>(<span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... nextSeq dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+dies_ok{<span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;_getFastaSeqs</span>(<span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... _getFastaSeqs dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+dies_ok{<span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;_getGenbankSeqs</span>(<span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... _getGenbankSeqs dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+
+
+<span class="Comment">##tess to see if the attributes are right for each SeqObj</span>
+<span class="Statement">my</span> <span class="Identifier">$NP_571131</span> = <span class="Constant">'</span><span class="Constant">MAVWLQAGALLVLLVVSSVSTNPGTPQHLCGSHLVDALYLVCGPTGFFYNPKRDVEPLLGFLPPKSAQETEVADFAFKDHAELIRKRGIVEQCCHKPCSIFELQNYCN</span><span class="Constant">'</span>;
+<span class="Statement">my</span> <span class="Identifier">$NP_990553</span> = <span class="Constant">'</span><span class="Constant">MALWIRSLPLLALLVFSGPGTSYAAANQHLCGSHLVEALYLVCGERGFFYSPKARRDVEQPLVSSPLRGEAGVLPFQQEEYEKVKRGIVEQCCHNTCSLYQLENYCN</span><span class="Constant">'</span>;
+<span class="Statement">my</span> <span class="Identifier">$NP_001103242</span> = <span class="Constant">'</span><span class="Constant">MALWTRLLPLLALLALWAPAPAQAFVNQHLCGSHLVEALYLVCGERGFFYTPKARREAENPQAGAVELGGGLGGLQALALEGPPQKRGIVEQCCTSICSLYQLENYCN</span><span class="Constant">'</span>;
+<span class="Comment"># go thru SeqIO obj and print all seq</span>
+<span class="Statement">while</span> (<span class="Statement">my</span> <span class="Identifier">$seqObj</span> = <span class="Identifier">$seqIoObj</span><span class="Identifier">-&gt;nextSeq</span>() ) {
+    <span class="Comment">#test for each of these cases</span>
+    <span class="Statement">if</span> (<span class="Identifier">$seqObj</span><span class="Identifier">-&gt;accn</span> <span class="Statement">eq</span> <span class="Constant">'</span><span class="Constant">NP_571131.1</span><span class="Constant">'</span>){
+        is <span class="Identifier">$NP_571131</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;seq</span>, <span class="Constant">'</span><span class="Constant">The sequences are the same for NP_571131.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">18858895</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;gi</span>, <span class="Constant">'</span><span class="Constant">The gi\</span>'<span class="Constant">s are the same for NP_571131.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">NP_571131.1</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;accn</span>, <span class="Constant">'</span><span class="Constant">The accn\</span>'<span class="Constant">s are the same for NP_571131.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">preproinsulin [Danio rerio]</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;def</span>, <span class="Constant">'</span><span class="Constant">def\</span>'<span class="Constant">s are the same for NP_571131.1</span><span class="Constant">'</span>;
+    }
+    <span class="Statement">elsif</span> (<span class="Identifier">$seqObj</span><span class="Identifier">-&gt;accn</span> <span class="Statement">eq</span> <span class="Constant">'</span><span class="Constant">NP_990553.1</span><span class="Constant">'</span>){
+        is <span class="Identifier">$NP_990553</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;seq</span>, <span class="Constant">'</span><span class="Constant">The sequences are the same for NP_990553.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">45382573</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;gi</span>, <span class="Constant">'</span><span class="Constant">The gi\</span>'<span class="Constant">s are the same for NP_990553.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">NP_990553.1</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;accn</span>, <span class="Constant">'</span><span class="Constant">The accn\</span>'<span class="Constant">s are the same for NP_990553.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">insulin precursor [Gallus gallus]</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;def</span>, <span class="Constant">'</span><span class="Constant">def\</span>'<span class="Constant">s are the same for NP_990553.1</span><span class="Constant">'</span>;
+    }
+    <span class="Statement">elsif</span> (<span class="Identifier">$seqObj</span><span class="Identifier">-&gt;accn</span> <span class="Statement">eq</span> <span class="Constant">'</span><span class="Constant">NP_001103242.1</span><span class="Constant">'</span>){
+        is <span class="Identifier">$NP_001103242</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;seq</span>, <span class="Constant">'</span><span class="Constant">The sequences are the same for NP_001103242.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">172073148</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;gi</span>, <span class="Constant">'</span><span class="Constant">The gi\</span>'<span class="Constant">s are the same for NP_001103242.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">NP_001103242.1</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;accn</span>, <span class="Constant">'</span><span class="Constant">The accn\</span>'<span class="Constant">s are the same for NP_001103242.1</span><span class="Constant">'</span>;
+        is <span class="Constant">'</span><span class="Constant">insulin [Sus scrofa]</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;def</span>, <span class="Constant">'</span><span class="Constant">def\</span>'<span class="Constant">s are the same for NP_001103242.1</span><span class="Constant">'</span>;
+    }<a name="UPDATE2"></a>
+    <span class="Statement">else</span>{
+        <span class="Statement">die</span> <span class="Constant">"</span><span class="Constant">Did you parse the accession with a version in your accn method?... dying</span><span class="Constant">"</span>;
+    }
+}
+
+<span class="Statement">my</span> <span class="Identifier">$seqObj</span> = BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>, <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>); <span class="Comment"># object creation</span>
+
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">gia</span> =&gt; <span class="Constant">1234</span>, <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... dies when bad attribute sent to the Bio::Seq constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>,  <span class="Constant">acc</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... dies when bad attribute sent to the Bio::Seq constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>,  <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">deff</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... dies when bad attribute sent to the Bio::Seq constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>,  <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">sequence</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... dies when bad attribute sent to Bio::Seq the constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... when gi not sent to the Bio::Seq constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... when def not sent to the Bio::Seq constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>,  <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>,  <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>)} <span class="Constant">'</span><span class="Constant">... when def not sent to the Bio::Seq constructor</span><span class="Constant">'</span>;
+dies_ok {BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>, <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>,)} <span class="Constant">'</span><span class="Constant">... when seq not sent to the Bio::Seq constructor</span><span class="Constant">'</span>;
+<span class="Identifier">$class</span> = <span class="Constant">'</span><span class="Constant">BioIO::Seq</span><span class="Constant">'</span>;
+isa_ok (<span class="Identifier">$seqObj</span>, <span class="Identifier">$class</span>);
+
+is <span class="Constant">'</span><span class="Constant">ACGTACGTACGTACGT</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;seq</span>, <span class="Constant">'</span><span class="Constant">The sequences are the same for the test</span><span class="Constant">'</span>;
+is <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;accn</span>, <span class="Constant">'</span><span class="Constant">The accn are the same for the test</span><span class="Constant">'</span>;
+is <span class="Constant">1234</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;gi</span>, <span class="Constant">'</span><span class="Constant">The gi are the same for the test</span><span class="Constant">'</span>;
+is <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Identifier">$seqObj</span><span class="Identifier">-&gt;def</span>, <span class="Constant">'</span><span class="Constant">The def are the same for the test</span><span class="Constant">'</span>;
+
+
+
+<span class="Statement">my</span> <span class="Identifier">$seqObj2</span> = BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>, <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ATGTACGTGGATCCACGTACGTCGGCCGAAAGACTACAAAGTCTGA</span><span class="Constant">'</span>); <span class="Comment"># object creation</span>
+<span class="Statement">my</span> <span class="Identifier">$seqObj3</span> = BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>, <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Constant">'</span><span class="Constant">ATGTACGTGGATCCACGTACGTCGGCCGTGG</span><span class="Constant">'</span>); <span class="Comment"># object creation</span>
+is <span class="Constant">1</span>, <span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;checkCoding</span>(), <span class="Constant">"</span><span class="Constant">Found a coding sequence</span><span class="Constant">"</span>;
+is <span class="Statement">undef</span>, <span class="Identifier">$seqObj3</span><span class="Identifier">-&gt;checkCoding</span>(), <span class="Constant">"</span><span class="Constant">Did not find a coding sequence</span><span class="Constant">"</span>;
+dies_ok{<span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;checkCoding</span>(<span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... checkCoding dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+
+<span class="Statement">my</span> (<span class="Identifier">$pos</span>, <span class="Identifier">$sequence</span>) = <span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;checkCutSite</span>(<span class="Constant">'</span><span class="Constant">GGATCC</span><span class="Constant">'</span>);
+is <span class="Constant">9</span>, <span class="Identifier">$pos</span>, <span class="Constant">"</span><span class="Constant">Foud the right cutsite for BamH1</span><span class="Constant">"</span>;
+is <span class="Constant">'</span><span class="Constant">GGATCC</span><span class="Constant">'</span>, <span class="Identifier">$sequence</span>, <span class="Constant">"</span><span class="Constant">Found the right sequence for BamH1 cut site</span><span class="Constant">"</span>;
+
+(<span class="Identifier">$pos</span>, <span class="Identifier">$sequence</span>) = <span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;checkCutSite</span>(<span class="Constant">'</span><span class="Constant">CG[GA][CT]CG</span><span class="Constant">'</span>);
+is <span class="Constant">23</span>, <span class="Identifier">$pos</span>, <span class="Constant">"</span><span class="Constant">Foud the right cutsite for BsiEI</span><span class="Constant">"</span>;
+is <span class="Constant">'</span><span class="Constant">CGGCCG</span><span class="Constant">'</span>, <span class="Identifier">$sequence</span>, <span class="Constant">"</span><span class="Constant">Found the right sequence for BsiEI cut site</span><span class="Constant">"</span>;
+
+(<span class="Identifier">$pos</span>, <span class="Identifier">$sequence</span>) = <span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;checkCutSite</span>(<span class="Constant">'</span><span class="Constant">GAC.{6}GTC</span><span class="Constant">'</span>);
+is <span class="Constant">32</span>, <span class="Identifier">$pos</span>, <span class="Constant">"</span><span class="Constant">Foud the right cutsite for DrDI</span><span class="Constant">"</span>;
+is <span class="Constant">'</span><span class="Constant">GACTACAAAGTC</span><span class="Constant">'</span>, <span class="Identifier">$sequence</span>, <span class="Constant">"</span><span class="Constant">Found the right sequence for DrDI cut site</span><span class="Constant">"</span>;
+
+(<span class="Identifier">$pos</span>, <span class="Identifier">$sequence</span>) = <span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;checkCutSite</span>(<span class="Constant">'</span><span class="Constant">GACCCCCCCC</span><span class="Constant">'</span>);
+is <span class="Statement">undef</span>, <span class="Identifier">$pos</span>, <span class="Constant">"</span><span class="Constant">Foud the right cutsite for fake cute site</span><span class="Constant">"</span>;
+is <span class="Statement">undef</span>, <span class="Identifier">$sequence</span>, <span class="Constant">"</span><span class="Constant">Found the right sequence for fake cute site</span><span class="Constant">"</span>;
+
+dies_ok{<span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;checkCutSite</span>()} <span class="Constant">'</span><span class="Constant">... checkCutSite dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+
+
+<span class="Statement">my</span> <span class="Identifier">$seqObj4</span> = <span class="Identifier">$seqObj2</span><span class="Identifier">-&gt;subSeq</span>(<span class="Constant">1</span>, <span class="Constant">10</span>);
+isa_ok (<span class="Identifier">$seqObj4</span>, <span class="Identifier">$class</span>);
+is <span class="Constant">'</span><span class="Constant">ATGTACGTGG</span><span class="Constant">'</span>, <span class="Identifier">$seqObj4</span><span class="Identifier">-&gt;seq</span>, <span class="Constant">"</span><span class="Constant">Found the right sequence for subseq</span><span class="Constant">"</span>;
+
+<span class="Statement">my</span> <span class="Identifier">$seqObj5</span>;
+dies_ok{<span class="Identifier">$seqObj5</span> = <span class="Identifier">$seqObj3</span><span class="Identifier">-&gt;subSeq</span>(<span class="Constant">1</span>, <span class="Constant">32</span>)} <span class="Constant">'</span><span class="Constant">... subSeq dies when too far the subSeq dies</span><span class="Constant">'</span>;
+dies_ok{<span class="Identifier">$seqObj5</span> = <span class="Identifier">$seqObj3</span><span class="Identifier">-&gt;subSeq</span>(<span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... subSeq dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+dies_ok{<span class="Identifier">$seqObj5</span> = <span class="Identifier">$seqObj3</span><span class="Identifier">-&gt;subSeq</span>(<span class="Statement">undef</span>, <span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... subSeq dies when not enough parameters that are defined are passed in (HINT defined)</span><span class="Constant">'</span>;
+dies_ok{<span class="Identifier">$seqObj5</span> = <span class="Identifier">$seqObj3</span><span class="Identifier">-&gt;subSeq</span>(<span class="Constant">1</span>, <span class="Statement">undef</span>)} <span class="Constant">'</span><span class="Constant">... subSeq dies when not enough parameters that are defined are passed in (HINT defined)</span><span class="Constant">'</span>;
+
+<span class="Statement">my</span> <span class="Identifier">$fileOutName</span> = <span class="Constant">'</span><span class="Constant">testScript.fasta</span><span class="Constant">'</span>;
+<span class="Statement">my</span> <span class="Identifier">$seq</span> = <span class="Constant">'</span><span class="Constant">A</span><span class="Constant">'</span> x <span class="Constant">80</span>;
+<span class="Statement">my</span> <span class="Identifier">$seqObj6</span> = BioIO::Seq-&gt;new(<span class="Constant">gi</span> =&gt; <span class="Constant">1234</span>, <span class="Constant">accn</span> =&gt; <span class="Constant">'</span><span class="Constant">ABCDEF</span><span class="Constant">'</span>, <span class="Constant">def</span> =&gt; <span class="Constant">'</span><span class="Constant">test</span><span class="Constant">'</span>, <span class="Constant">seq</span> =&gt; <span class="Identifier">$seq</span>); <span class="Comment"># object creation</span>
+<span class="Identifier">$seqObj6</span><span class="Identifier">-&gt;writeFasta</span>(<span class="Identifier">$fileOutName</span>, <span class="Constant">60</span>);
+<span class="Statement">my</span> (<span class="Identifier">$compareSeq</span>) = <span class="Statement">`</span><span class="Constant">sed -n '2p;' </span><span class="Identifier">$fileOutName</span><span class="Statement">`</span>;
+<span class="Identifier">$compareSeq</span> =~ <span class="Statement">s/</span><span class="Special">\n</span><span class="Statement">//g</span>;
+is <span class="Constant">60</span>, <span class="Statement">length</span> <span class="Identifier">$compareSeq</span>, <span class="Constant">"</span><span class="Constant">Found the right length sequence</span><span class="Constant">"</span>;
+
+<span class="Identifier">$seqObj6</span><span class="Identifier">-&gt;writeFasta</span>(<span class="Identifier">$fileOutName</span>);
+(<span class="Identifier">$compareSeq</span>) = <span class="Statement">`</span><span class="Constant">sed -n '2p;' </span><span class="Identifier">$fileOutName</span><span class="Statement">`</span>;
+<span class="Identifier">$compareSeq</span> =~ <span class="Statement">s/</span><span class="Special">\n</span><span class="Statement">//g</span>;
+is <span class="Constant">70</span>, <span class="Statement">length</span> <span class="Identifier">$compareSeq</span>, <span class="Constant">"</span><span class="Constant">Found the right length sequence for default (70)</span><span class="Constant">"</span>;
+
+dies_ok{<span class="Identifier">$seqObj6</span><span class="Identifier">-&gt;writeFasta</span>()} <span class="Constant">'</span><span class="Constant">... writeFasta dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+dies_ok{<span class="Identifier">$seqObj6</span><span class="Identifier">-&gt;writeFasta</span>(<span class="Identifier">$fileOutName</span>, <span class="Constant">60</span>, <span class="Constant">1</span>)} <span class="Constant">'</span><span class="Constant">... writeFasta dies when not the right number of parameters are passed in</span><span class="Constant">'</span>;
+<span class="Statement">unlink</span> <span class="Identifier">$fileOutName</span>;
+
+
+
+
+
+</pre>
+
+
+<iframe id="piggyDomainNotSupported" style="opacity: 0; display: none;" src="./Final_testSeqIO.t_files/saved_resource.html"></iframe><input style="position: absolute; top: -10000px;"></body></html>
